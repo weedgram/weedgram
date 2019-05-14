@@ -1,0 +1,9 @@
+<file-drop *ngIf="!uploading" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
+</file-drop>
+<input type="file"
+       id="file"
+       (change)="fileSelected($event.target.files)">
+<div *ngIf="uploading">
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+</div>
+

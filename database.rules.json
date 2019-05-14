@@ -1,0 +1,22 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      ".read": true,
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".validate": "newData.hasChildren(['name']) && newData.child('name').isString()"
+      }
+    },
+    "posts": {
+      ".read": true,
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        "$post": {
+        	".validate": "(!data.exists() && newData.hasChildren(['body', 'createdAt', 'title']) && newData.child('body').isString() && newData.child('title').isString() && newData.child('createdAt').isNumber()) || (data.exists() && newData.hasChildren(['body', 'title', 'createdAt', 'updatedAt']) && newData.child('body').isString() && newData.child('title').isString() && newData.child('createdAt').isNumber() && newData.child('updatedAt').isNumber() && newData.child('createdAt').val() == data.child('createdAt').val())"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.main-card {
+  max-width: 600px;
+  margin: auto;
+}
+.main-card button {
+  width: 100%;
+}

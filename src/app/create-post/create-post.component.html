@@ -1,0 +1,13 @@
+<mat-card class="main-card">
+  <div *ngIf="!loading; else loadingProgress">
+    <mat-card-title>{{ post.createdAt ? 'Edit' : 'Create' }} a post</mat-card-title>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Title" [(ngModel)]="post.title">
+    </mat-form-field>
+    <simplemde [(ngModel)]="post.body" [options]="{toolbar:toolbar}"></simplemde>
+    <button mat-raised-button color="primary" (click)="sendPost()">Submit</button>
+  </div>
+  <ng-template #loadingProgress>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</mat-card>

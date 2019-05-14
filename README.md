@@ -1,5 +1,21 @@
 # WeedGram
 
+WeedGram is a website for growers to share their progress & experiences while staying anonymous.
+
+### Current features  
+* Register / Login via google. The only information stored in the database is the username you chose.
+* Create posts with Markdown formatting & editor.
+* Edit / Remove posts
+* Image hosting with EXIF removal client-side if the file is a JPEG
+* Share your blog with a link
+
+### Todo
+
+* Comments
+* Youtube integration
+* Mail & Password login
+* Open to suggestions... ;)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Development server

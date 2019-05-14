@@ -1,0 +1,14 @@
+.post-card, .pre-post-card {
+  margin: 10px auto;
+  max-width: 800px;
+  min-height: 35px;
+}
+
+.pre-post-card button {
+  float: left;
+}
+
+.pre-post-card a {
+  float: right;
+  z-index: 2;
+}

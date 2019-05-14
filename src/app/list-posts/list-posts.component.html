@@ -1,0 +1,28 @@
+<div class="pre-post-card">
+  <div *ngIf="!userId; else userNameTag">
+    <button mat-raised-button ngxClipboard [cbContent]="url" (click)="share()">Share</button>
+    <a class="create-post" mat-fab [routerLink]="['/create-post']">
+      <mat-icon aria-label="Create a post">add</mat-icon>
+    </a>
+  </div>
+  <ng-template #userNameTag>
+    <h1 *ngIf="(userName$ | async) as userName">{{ userName }}'s blog</h1>
+  </ng-template>
+</div>
+<div *ngIf="(posts$ | async) as posts">
+  <mat-card class="post-card" *ngFor="let post of posts">
+    <mat-card-header>
+      <mat-card-title>{{ post.title }}</mat-card-title>
+      <mat-card-subtitle>
+        {{post.createdAt | date:'medium' }}
+        <span *ngIf="post.updatedAt"> | Updated on {{post.updatedAt | date:'medium' }}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="content" [innerHTML]="post.body | async | markdown">
+    </mat-card-content>
+    <mat-card-actions *ngIf="!userId;">
+      <a mat-button [routerLink]="['/create-post', post.key]">EDIT</a>
+      <button mat-button color="warn" (click)="delete(post.key)">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
