@@ -30,6 +30,7 @@ import { FileDropModule } from 'ngx-file-drop';
 import { CreatePostComponent } from './create-post/create-post.component';
 import {ClipboardModule} from 'ngx-clipboard';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 const firebaseConfig = {
   apiKey: 'AIzaSyAOcBL60O2i-texQWvB8i3n2cUby8i21Dg',
   authDomain: 'weedgram-79d2d.firebaseapp.com',
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   { path: 'create-post/:postId', component: CreatePostComponent, canActivate: [AuthGuard] },
   { path: 'posts', component: ListPostsComponent, canActivate: [AuthGuard] },
   { path: 'posts/:userId', component: ListPostsComponent },
+  { path: 'posts/:userId/:postId', component: PostDetailsComponent },
   { path: 'users', component: ListUsersComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
@@ -59,7 +61,8 @@ const appRoutes: Routes = [
     ListUsersComponent,
     ImageUploaderComponent,
     CreatePostComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,

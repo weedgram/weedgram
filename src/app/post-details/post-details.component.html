@@ -1,0 +1,15 @@
+<mat-card class="post-card" *ngIf="(post$ | async) as post">
+  <mat-card-header>
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{post.createdAt | date:'medium' }}
+      <span *ngIf="post.updatedAt"> | Updated on {{post.updatedAt | date:'medium' }}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="content" [innerHTML]="post.body | markdown">
+  </mat-card-content>
+  <mat-card-actions *ngIf="!userId;">
+    <a mat-button [routerLink]="['/create-post', post.key]">EDIT</a>
+    <button mat-button color="warn" (click)="delete()">DELETE</button>
+  </mat-card-actions>
+</mat-card>

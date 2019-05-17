@@ -15,6 +15,12 @@
         ".write": "$uid === auth.uid",
         "$post": {
         	".validate": "(!data.exists() && newData.hasChildren(['body', 'createdAt', 'title']) && newData.child('body').isString() && newData.child('title').isString() && newData.child('createdAt').isNumber()) || (data.exists() && newData.hasChildren(['body', 'title', 'createdAt', 'updatedAt']) && newData.child('body').isString() && newData.child('title').isString() && newData.child('createdAt').isNumber() && newData.child('updatedAt').isNumber() && newData.child('createdAt').val() == data.child('createdAt').val())"
+        },
+        "comments": {
+          ".write": "auth.uid != null",
+          "$comment": {
+            ".validate": "newData.child('comment').isString() && newData.child('userId').isString() && newData.child('createdAt').isNumber() && newData.child('userId').val() == auth.uid && ((!data.exists() && newData.hasChildren(['comment', 'createdAt', 'userId'])) || (data.exists() && newData.hasChildren(['comment', 'userId', 'createdAt', 'updatedAt']) && newData.child('updatedAt').isNumber() && newData.child('createdAt').val() == data.child('createdAt').val()))"
+          }
         }
       }
     }
