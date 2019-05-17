@@ -26,8 +26,6 @@ export class AuthService {
   doGoogleLogin() {
     return Observable.create((observer) => {
       const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
       this.afAuth.auth
         .signInWithPopup(provider)
         .then(res => {
