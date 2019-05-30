@@ -26,13 +26,23 @@ export class AuthService {
   doGoogleLogin() {
     return Observable.create((observer) => {
       const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
       this.afAuth.auth
         .signInWithPopup(provider)
         .then(res => {
           observer.next(res);
         });
+    });
+  }
+
+  doMailPasswordLogin(mail, password) {
+    return Observable.create((observer) => {
+      this.afAuth.auth.signInWithEmailAndPassword(mail, password).then(user => observer.next(user)).catch(error => {
+        if (error.code === 'auth/user-not-found') {
+          this.afAuth.auth.createUserWithEmailAndPassword(mail, password).then(user => observer.next(user)).catch(err => observer.error(err));
+        } else {
+          observer.error(error);
+        }
+      });
     });
   }
 
